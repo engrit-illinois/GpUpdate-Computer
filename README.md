@@ -31,7 +31,7 @@ If specified, the given PSCredential will be passed to `Invoke-Command` as its `
 Otherwise, the current PowerShell user's credentials will be used, per default `Invoke-Command` behavior.  
 Useful if you want to connect and run the command as a superuser account, or local admin account.  
 
-### -ThrottleLimit <\int\>
+### -ThrottleLimit \<int\>
 Optional integer.  
 The maximum number of machines to connect to and process simultenaously (asynchronously).  
 Default is `50`.  
