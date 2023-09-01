@@ -1,2 +1,2 @@
-# GpUpdate-Computer
-Custom module for silently running `gpupdate /force` on one or more remote computers.
+# Summary
+Custom module for silently and asynchronously running `gpupdate /force` on one or more remote computers.
