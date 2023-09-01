@@ -24,17 +24,28 @@ Optional string.
 The OUDN of an OU under which to limit the AD search for `-Queries`.  
 Default is `OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu`.  
 
+### -ThrottleLimit \<int\>
+Optional integer.  
+The maximum number of machines to connect to and process simultenaously (asynchronously).  
+Default is `50`.  
+
+### -FullOutput
+Optional switch.  
+By default, for readability the responses returned from the remote computers are translated from their verbose language into more simplified statements, and irrelevent statements or informational info is omitted.  
+When `-FullTimeout` is specified, the responses are returned in full and unaltered (except for the removal of blank lines).  
+
+### -NoColor
+Optional switch.  
+By default, for readability, standard/recognized repsonses from the remote computers are colorized based on their implications.  
+For example, `Computer Policy update has completed successfully.` and similar messages are colored green, warnings and informational responses are colored yellow, and errors are colored red.  
+When `-NoColor` is specified, no colorization is performed.  
+
 ### -Credential \<PSCredential\>
 Optional PSCredential object.  
 The module works by implementing the `Invoke-Command` cmdlet to connect to remote computers.  
 If specified, the given PSCredential will be passed to `Invoke-Command` as its `-Credential` parameter.  
 Otherwise, the current PowerShell user's credentials will be used, per default `Invoke-Command` behavior.  
 Useful if you want to connect and run the command as a superuser account, or local admin account.  
-
-### -ThrottleLimit \<int\>
-Optional integer.  
-The maximum number of machines to connect to and process simultenaously (asynchronously).  
-Default is `50`.  
 
 # Notes
 - By mseng3. See my other projects here: https://github.com/mmseng/code-compendium.
