@@ -53,4 +53,5 @@ Otherwise, the current PowerShell user's credentials will be used, per default `
 Useful if you want to connect and run the command as a superuser account, or local admin account.  
 
 # Notes
+- This is implemented by using `Invoke-Command` to run `echo "n" | gpupdate /force`, so that the potential logoff prompt will always be denied.
 - By mseng3. See my other projects here: https://github.com/mmseng/code-compendium.
