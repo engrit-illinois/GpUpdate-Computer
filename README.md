@@ -1,7 +1,7 @@
 # Summary
 Custom module for silently and asynchronously running `gpupdate /force` on one or more remote computers.  
 
-I find this to be more useful than using GPMC or MECM/RCT because those are generally some combination of not silent (can display a console window for logged-in users), not instantaneous, and not reliable.  
+I find this to be more useful than using GPMC or MECM/RCT because those are generally some combination of not silent (can display a console window for logged-in users), not instantaneous, and/or not reliable.  
 
 # Usage
 1. Download `GpUpdate-Computer.psm1` to the appropriate subdirectory of your PowerShell [modules directory](https://github.com/engrit-illinois/how-to-install-a-custom-powershell-module).
