@@ -9,7 +9,7 @@ I find this to be more useful than using GPMC or MECM/RCT because those are eith
 
 # Example
 ```powershell
-GpUpdate-Computer mel-101-*,eh-201-*
+GpUpdate-Computer "mel-101-*","eh-201-*"
 ```
 
 # Parameters
