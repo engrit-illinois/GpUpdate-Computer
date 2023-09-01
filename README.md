@@ -7,6 +7,9 @@ I find this to be more useful than using GPMC or MECM/RCT because those are gene
 1. Download `GpUpdate-Computer.psm1` to the appropriate subdirectory of your PowerShell [modules directory](https://github.com/engrit-illinois/how-to-install-a-custom-powershell-module).
 2. Run it using the examples and parameter documentation below.
 
+# Requirements
+  - PowerShell 7+
+
 # Example
 ```powershell
 GpUpdate-Computer "mel-101-*","eh-201-*"
