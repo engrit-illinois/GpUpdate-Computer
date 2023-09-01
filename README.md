@@ -12,6 +12,8 @@ I find this to be more useful than using GPMC or MECM/RCT because those are gene
 GpUpdate-Computer "mel-101-*","eh-201-*"
 ```
 
+<img src='./example.png' />
+
 # Parameters
 
 ### -Queries \<string[]\>
