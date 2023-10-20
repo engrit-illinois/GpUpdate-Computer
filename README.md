@@ -8,7 +8,7 @@ I find this to be more useful than using GPMC or MECM/RCT because those are gene
 2. Run it using the examples and parameter documentation below.
 
 # Requirements
-  - PowerShell 7+
+  - PowerShell 7+, unless `-Synchronous` is specified.
 
 # Example
 ```powershell
@@ -33,6 +33,11 @@ Default is `OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu`.
 Optional integer.  
 The maximum number of machines to connect to and process simultenaously (asynchronously).  
 Default is `50`.  
+
+### -Synchronous
+Optional switch.  
+Run gpupdates on computers sequentially instead of asynchronously.  
+For use with PowerShell 5.1.  
 
 ### -FullOutput
 Optional switch.  

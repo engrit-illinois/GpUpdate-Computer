@@ -6,6 +6,7 @@ function GpUpdate-Computer {
 		[string[]]$Queries,
 		[string]$SearchBase="OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu",
 		[int]$ThrottleLimit = 50,
+		[switch]$Synchronous,
 		[switch]$FullOutput,
 		[switch]$NoColor,
 		[PSCredential]$Credential
@@ -55,11 +56,17 @@ function GpUpdate-Computer {
 		log "    $compsString"
 		
 		# The following works on client computers with PS 5.1+
-		$comps | ForEach-Object -ThrottleLimit $ThrottleLimit -Parallel {
+		$scriptBlock = {
 			$comp = $_
-			$FullOutput = $using:FullOutput
-			$NoColor = $using:NoColor
-			$Credential = $using:Credential
+			
+			try {
+				$FullOutput = $using:FullOutput
+				$NoColor = $using:NoColor
+				$Credential = $using:Credential
+			}
+			catch {
+				# If any of these fail, it just means we're running synchronously, and we already have access to these variables.
+			}
 			
 			function log {
 				param(
@@ -177,6 +184,13 @@ function GpUpdate-Computer {
 			$output | ForEach-Object { log $_ }
 			
 			log "Done processing." -Comp $comp -ExtraNewlineBefore
+		}
+		
+		if($Synchronous) {
+			$comps | ForEach-Object -Process $scriptBlock
+		}
+		else {
+			$comps | ForEach-Object -ThrottleLimit $ThrottleLimit -Parallel $scriptBlock
 		}
 	}
 	
