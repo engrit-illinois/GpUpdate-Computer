@@ -161,7 +161,7 @@ function GpUpdate-Computer {
 				$colorized
 			}
 			
-			log "Processing..." -Comp $comp -ExtraNewlineBefore
+			log "Processing..." -Comp $comp
 			
 			$scriptBlock = { echo "n" | gpupdate /force }
 			$params = @{
@@ -178,12 +178,10 @@ function GpUpdate-Computer {
 				$results = $_.Exception.Message
 			}
 			
-			log "Results:" -Comp $comp -ExtraNewlineBefore
-			
+			log "Results:" -Comp $comp
 			$output = Format-Results $results
-			$output | ForEach-Object { log $_ }
-			
-			log "Done processing." -Comp $comp -ExtraNewlineBefore
+			$output | ForEach-Object { log $_ -Comp $comp }
+			log "Done processing." -Comp $comp
 		}
 		
 		if($Synchronous) {
