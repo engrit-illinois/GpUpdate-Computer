@@ -194,5 +194,5 @@ function GpUpdate-Computer {
 	
 	Do-Stuff
 	
-	log "EOF" -ExtraNewlineBefore
+	log "EOF"
 }
