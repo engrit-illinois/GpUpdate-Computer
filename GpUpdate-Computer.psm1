@@ -51,9 +51,14 @@ function GpUpdate-Computer {
 		if($SearchBase) { $params.SearchBase = $SearchBase }
 		$comps = Get-AdComputerName @params
 		
-		log "Matching computers found:"
-		$compsString = "`"" + ($comps -join "`",`"") + "`""
-		log "    $compsString"
+		if($comps) {
+			log "Matching computers found:"
+			$compsString = "`"" + ($comps -join "`",`"") + "`""
+			log "    $compsString"
+		}
+		else {
+			log "No matching computers found!"
+		}
 		
 		# The following works on client computers with PS 5.1+
 		$scriptBlock = {
@@ -89,9 +94,11 @@ function GpUpdate-Computer {
 				if($Msg -like "*``[color``:*``]*") {
 					$regex = '^.*\[color\:([a-z]*)\].*$'
 					$regexResult = $Msg -match $regex
-					$color = $matches[1]
-					$replace = "[color:$($color)]"
-					$Msg = $Msg.Replace($replace,"")
+					if($matches) {
+						$color = $matches[1]
+						$replace = "[color:$($color)]"
+						$Msg = $Msg.Replace($replace,"")
+					}
 					$params.Object = $Msg
 					$params.ForegroundColor = $color
 				}
