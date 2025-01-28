@@ -22,12 +22,10 @@ GpUpdate-Computer "mel-101-*","eh-201-*"
 ### -Queries \<string[]\>
 Required string array.  
 One or more strings representing computer names or wildcard queries for computer names to be searched for in AD.  
-Only matching computers found in AD (under the given `-SearchBase`) will be acted upon.  
 
 ### -SearchBase \<string\>
 Optional string.  
 The OUDN of an OU under which to limit the AD search for `-Queries`.  
-Default is `OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu`.  
 
 ### -ThrottleLimit \<int\>
 Optional integer.  

@@ -4,7 +4,7 @@ function GpUpdate-Computer {
 	param(
 		[Parameter(Mandatory=$true,Position=0)]
 		[string[]]$Queries,
-		[string]$SearchBase="OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu",
+		[string]$SearchBase,
 		[int]$ThrottleLimit = 50,
 		[switch]$Synchronous,
 		[switch]$FullOutput,
@@ -28,7 +28,11 @@ function GpUpdate-Computer {
 			[string[]]$Queries,
 			[string]$SearchBase
 		)
-		Get-ADComputerLike -Queries $Queries -SearchBase $SearchBase | Select -ExpandProperty "Name"
+		$params = @{
+			Queries = $Queries
+		}
+		if($SearchBase) { $params.SearchBase = $SearchBase }
+			Get-ADComputerLike @params | Select -ExpandProperty "Name"
 	}
 
 	function Get-ADComputerLike {
@@ -38,7 +42,12 @@ function GpUpdate-Computer {
 		)
 		$allResults = @()
 		foreach($query in @($Queries)) {
-			$results = Get-ADComputer -SearchBase $SearchBase -Filter "name -like `"$query`"" -Properties *
+			$params = @{
+				Filter = "name -like `"$query`""
+				Properties = "*"
+			}
+			if($SearchBase) { $params.SearchBase = $SearchBase }
+			$results = Get-ADComputer @params
 			$allResults += @($results)
 		}
 		$allResults
